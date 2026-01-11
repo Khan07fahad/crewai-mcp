@@ -100,8 +100,8 @@ An AI-powered calculator system where CrewAI agents automatically discover and u
 
 Create the project directory:
 ```bash
-mkdir -p ~/Desktop/AI-agent/calculater
-cd ~/Desktop/AI-agent/calculater
+mkdir -p ~/Desktop/crewai-mcp
+cd ~/Desktop/crewai-mcp
 ```
 
 Your project should have this structure:
@@ -116,7 +116,7 @@ calculater/
 ### Step 2: Create Virtual Environment
 
 ```bash
-cd ~/Desktop/AI-agent/calculater
+cd ~/Desktop/crewai-mcp
 
 # Create virtual environment named 'vecal'
 python3 -m venv vecal
@@ -126,7 +126,7 @@ source vecal/bin/activate
 
 # Verify activation (you should see (vecal) in your prompt)
 which python
-# Should output: /Users/[username]/Desktop/AI-agent/calculater/vecal/bin/python
+# Should output: /Users/[username]/Desktop/crewai-mcp/vecal/bin/python
 ```
 
 ### Step 3: Install Dependencies
@@ -249,7 +249,7 @@ You'll need **TWO terminal**:
 
 ```bash
 # Navigate to project directory
-cd ~/Desktop/AI-agent/calculater
+cd ~/Desktop/crewai-mcp
 
 # Activate virtual environment
 source vecal/bin/activate
@@ -291,7 +291,7 @@ INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 
 ```bash
 # Open NEW terminal tab/window
-cd ~/Desktop/AI-agent/calculater
+cd ~/Desktop/crewai-mcp
 
 # Activate virtual environment
 source vecal/bin/activate
@@ -343,8 +343,6 @@ All calculations completed successfully!
 ```
 
 ### Interactive Mode
-
-For an interactive calculator experience, create `interactive_calculator.py`:
 
 ```python
 from crewai import Agent, Task, Crew, Process
@@ -427,8 +425,8 @@ with MCPServerAdapter(server_params) as tools:
 
 **What happens**:
 1. MCPServerAdapter connects to `http://localhost:8000/sse`
-2. Server creates session: `session_id=abc-123`
-3. Server sends: `data: /messages/?session_id=abc-123`
+2. Server creates session: `session_id=xxxxxxx`
+3. Server sends: `data: /messages/?session_id=xxxxxxx`
 4. Adapter extracts session ID and keeps SSE connection open
 5. Adapter requests tool list: `{"method": "tools/list"}`
 6. Server returns: `["add_numbers", "subtract_numbers", ...]`
@@ -466,13 +464,13 @@ mcp_request = {
     }
 }
 
-# POSTs to /messages/?session_id=abc-123
+# POSTs to /messages/?session_id=xxxxxxx
 response = requests.post(url, json=mcp_request)
 ```
 
 **On Server Side**:
 ```python
-# Server receives request at /messages/?session_id=abc-123
+# Server receives request at /messages/?session_id=xxxxxxx
 # Looks up session by ID
 # Routes message through SSE transport streams
 # Calls the actual Python function:
@@ -515,7 +513,7 @@ MCPServerAdapter.add_numbers(15, 27)
      ↓
 [Converts to JSON-RPC]
      ↓
-POST /messages/?session_id=abc-123
+POST /messages/?session_id=xxxxxxx
 {
   "jsonrpc": "2.0",
   "method": "tools/call",
