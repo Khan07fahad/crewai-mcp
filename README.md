@@ -664,14 +664,6 @@ python -c "import mcp; import crewai; print('All good!')"
 ✅ **CrewAI makes AI agents easy** - Automatic tool discovery and usage  
 ✅ **Modular architecture** - Server and agents are independent  
 
-### Next Steps
-
-1. **Extend Tools**: Add more mathematical operations
-2. **Build UI**: Create web interface for the calculator
-3. **Deploy**: Host server on cloud platform
-4. **Create More Servers**: Build MCP servers for other domains (weather, database, etc.)
-5. **Combine Servers**: Use MCPServerAdapter to connect to multiple MCP servers
-
 ---
 
 ## 📖 Additional Resources
