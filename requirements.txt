@@ -1,0 +1,11 @@
+crewai
+requests
+python-dotenv
+openai
+mcp
+flask
+fastapi
+uvicorn
+crewai-tools[mcp]
+fastmcp
+starlette
